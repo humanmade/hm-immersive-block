@@ -171,7 +171,52 @@
 	}
 
 	.video-ambient-controls {
+		align-items: center;
+		align-self: end;
+		aspect-ratio: 1/1;
+		background-color: var( --hm-immersive-button-color, #FFF );
+		border: 0;
+		color: var( --hm-immersive-button-color, #000 );
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		grid-column: 2 / span 1;
+		grid-row: 2 / span 1;
+		justify-self: end;
+		margin: var( --hm-immersive-button-margin );
+		padding: var( --hm-immersive-button-padding, 0.5rem );
+		width: var( --hm-immersive-button-width );
 		z-index: 2;
+
+		&::before {
+			content: "\25BA";
+			font-size: var( --hm-immersive-button-font-size, 2rem );
+			line-height: 1;
+			height: 100%;
+			scale: 0.8;
+			width: 100%;
+		}	
+
+		&[hidden] {
+			display: none;
+		}
+
+		&:hover,
+		&:focus,
+		&:focus-visible {
+			background-color: var( --hm-immersive-button-color, #000 );
+			color: var( --hm-immersive-button-color, #FFF );
+		}
+
+		&:focus,
+		&:focus-visible {
+			outline: var( --hm-immersive-button-outline, 2px solid currentColor );
+		}
+
+		&.pause::before {
+			content: "\23F8"; 
+			scale: 1;
+		}
 	}
 
 	&.wp-block-video {
