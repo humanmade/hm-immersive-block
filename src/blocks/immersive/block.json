@@ -79,6 +79,10 @@
     "useMedia": {
       "type": "boolean",
       "default": true
+    },
+    "useOverlay": {
+      "type": "boolean",
+      "default": true
     }
   },
   "supports": {

@@ -23,6 +23,7 @@ function save( props ) {
 		speed,
 		transitionType,
 		useMedia,
+		useOverlay,
 	} = attributes;
 
 	const minHeightWithUnit =
@@ -38,6 +39,7 @@ function save( props ) {
 		className: classnames( 'immersive', {
 			[ `align${ align }` ]: align,
 			'has-media-caption': creditText || mediaCaption,
+			'has-overlay': useMedia && useOverlay,
 			'wp-block-video': mediaType === 'video',
 			'wp-block-video--ambient': mediaType === 'video',
 		} ),

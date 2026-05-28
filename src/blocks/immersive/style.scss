@@ -31,16 +31,6 @@
 		width: 100vw;
 	}
 
-	.wp-element-caption {
-		grid-column: 1 / span 2;
-		padding-left: var( --wp--style--root--padding-left, 1rem );
-		padding-right: var( --wp--style--root--padding-right, 1rem );
-
-		p {
-			margin: 0;
-		}
-	}
-
 	.immersive {
 		&--image,
 		&--scroll-content {
@@ -60,20 +50,20 @@
 				margin: 0;
 			}
 		}
+	}
 
-		&--image::after {
-			background-color: var( --hm-immersive-overlay-bg, rgba( 0, 0, 0, 0.55 ) );
-			bottom: 0;
-			content: "";
-			display: block;
-			height: 100%;
-			left: 0;
-			position: absolute;
-			right: 0;
-			top: 0;
-			width: 100%;
-			z-index: 1;
-		}
+	&.has-overlay .immersive--image::after {
+		background-color: var( --hm-immersive-overlay-bg, rgba( 0, 0, 0, 0.55 ) );
+		bottom: 0;
+		content: "";
+		display: block;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
+		z-index: 1;
 	}
 
 	/* stylelint-disable declaration-no-important */
@@ -87,36 +77,11 @@
 	}
 	/* stylelint-enable declaration-no-important */
 
-	&.has-background .wp-element-caption {
-		background-color: var( --hm-immersive-caption-bg, #fff );
-		color: initial;
-		margin-block-start: 0;
-		padding-block-start: clamp( 0.5rem, 0.72vw + 0.33rem, 1rem );
-		position: relative;
-
-		&::before {
-			background-color: inherit;
-			content: "";
-			display: block;
-			inset: 0;
-			margin-left: -100vw;
-			position: absolute;
-			width: 200vw;
-		}
-
-		p {
-			position: relative;
-			z-index: 1;
-		}
-	}
-
 	&:not( .has-background ):not( .has-text-color )
 		.immersive--image
 		+ .immersive--scroll-content {
 		color: var( --hm-immersive-content-color, #fff );
 
-		.is-style-sand,
-		.is-style-colored,
 		.has-background {
 			color: initial;
 		}
@@ -206,6 +171,34 @@
 		.immersive--image,
 		.immersive--scroll-content {
 			grid-row: 1 / span 2;
+		}
+	}
+
+	.wp-element-caption {
+		background-color: var( --hm-immersive-caption-bg, #fff );
+		color: initial;
+		grid-column: 1 / span 2;
+		margin-block: 0;
+		padding-block: clamp( 0.5rem, 0.72vw + 0.33rem, 1rem );
+		padding-left: var( --wp--style--root--padding-left, 1rem );
+		padding-right: var( --wp--style--root--padding-right, 1rem );
+		position: relative;
+		z-index: 1;
+
+		&::before {
+			background-color: inherit;
+			content: "";
+			display: block;
+			inset: 0;
+			margin-left: -100vw;
+			position: absolute;
+			width: 200vw;
+		}
+
+		p {
+			margin: 0;
+			position: relative;
+			z-index: 1;
 		}
 	}
 }

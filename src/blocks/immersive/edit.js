@@ -36,6 +36,7 @@ function Edit( props ) {
 		speed,
 		transitionType,
 		useMedia,
+		useOverlay,
 	} = attributes;
 
 	const [ hasUpdated, setHasUpdated ] = useState( false );
@@ -57,6 +58,7 @@ function Edit( props ) {
 		className: classnames( 'immersive', 'wp-block-image-wrapper', {
 			[ `align${ align }` ]: align,
 			'has-media-caption': creditText || mediaCaption,
+			'has-overlay': useMedia && useOverlay,
 		} ),
 		style: style,
 	} );
@@ -125,6 +127,26 @@ function Edit( props ) {
 							setAttributes( { useMedia } );
 						} }
 					/>
+					{ useMedia && (
+						<ToggleControl
+							checked={ useOverlay }
+							label={ __(
+								'Apply background media overlay',
+								'hm-immersive-block'
+							) }
+							help={
+								useOverlay
+									? ''
+									: __(
+										'Without the overlay, you\'ll need a background behind all text to increase color contrast for accessibility.',
+										'hm-immersive-block'
+									)
+							}
+							onChange={ ( useOverlay ) => {
+								setAttributes( { useOverlay } );
+							} }
+						/>
+					)}
 				</PanelBody>
 				<PanelBody title={ __( 'Transitions', 'hm-immersive-block' ) }>
 					<ToggleGroupControl
