@@ -33,6 +33,12 @@
 
 	.wp-element-caption {
 		grid-column: 1 / span 2;
+		padding-left: var( --wp--style--root--padding-left, 1rem );
+		padding-right: var( --wp--style--root--padding-right, 1rem );
+
+		p {
+			margin: 0;
+		}
 	}
 
 	.immersive {
@@ -90,13 +96,11 @@
 
 		&::before {
 			background-color: inherit;
-			bottom: 0;
 			content: "";
 			display: block;
-			left: 0;
+			inset: 0;
 			margin-left: -100vw;
 			position: absolute;
-			top: 0;
 			width: 200vw;
 		}
 

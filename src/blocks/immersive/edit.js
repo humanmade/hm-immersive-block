@@ -56,7 +56,7 @@ function Edit( props ) {
 	const blockProps = useBlockProps( {
 		className: classnames( 'immersive', 'wp-block-image-wrapper', {
 			[ `align${ align }` ]: align,
-			'has-media-caption': mediaCaption,
+			'has-media-caption': creditText || mediaCaption,
 		} ),
 		style: style,
 	} );
@@ -178,18 +178,15 @@ function Edit( props ) {
 					template={ CONTENT_TEMPLATE }
 				/>
 			</div>
-			{ useMedia && ( mediaCaption || creditText || isSelected ) && (
-				<MediaCaption
-					attachmentData={ mediaItem }
-					creditText={ creditText }
-					hasUpdated={ hasUpdated }
-					isSelected={ isSelected }
-					mediaCaption={ mediaCaption }
-					mediaId={ mediaId }
-					setAttributes={ setAttributes }
-					setHasUpdated={ setHasUpdated }
-				/>
-			) }
+			<MediaCaption
+				attachmentData={ mediaItem }
+				creditText={ creditText }
+				hasUpdated={ hasUpdated }
+				mediaCaption={ mediaCaption }
+				mediaId={ mediaId }
+				setAttributes={ setAttributes }
+				setHasUpdated={ setHasUpdated }
+			/>
 		</figure>
 	);
 }

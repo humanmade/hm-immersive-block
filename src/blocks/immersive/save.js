@@ -37,7 +37,7 @@ function save( props ) {
 	const blockProps = useBlockProps.save( {
 		className: classnames( 'immersive', {
 			[ `align${ align }` ]: align,
-			'has-media-caption': mediaCaption,
+			'has-media-caption': creditText || mediaCaption,
 			'wp-block-video': mediaType === 'video',
 			'wp-block-video--ambient': mediaType === 'video',
 		} ),
@@ -72,7 +72,7 @@ function save( props ) {
 					className="video-ambient-controls pause"
 				></button>
 			) }
-			{ useMedia && ( creditText || mediaCaption ) && (
+			{ ( creditText || mediaCaption ) && (
 				<MediaCaption.Content
 					creditText={ creditText }
 					mediaCaption={ mediaCaption }
