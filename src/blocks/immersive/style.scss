@@ -132,18 +132,6 @@
 		overflow: scroll;
 		z-index: 1;
 
-		&:not( :has( .is-layout-constrained ) ) {
-			margin-left: auto;
-			margin-right: auto;
-			max-width: var( --wp--style--global--wide-size, 1200px );
-			padding-left: var( --wp--style--root--padding-left, 1rem );
-			padding-right: var( --wp--style--root--padding-right, 1rem );
-			width: calc(
-				100% - var( --wp--style--root--padding-left, 1rem ) -
-					var( --wp--style--root--padding-right, 1rem )
-			);
-		}
-
 		&-item {
 			background-position: center;
 			display: flex;
@@ -153,20 +141,6 @@
 			grid-row: 1 / span 1;
 			justify-content: center;
 			margin-block: 0;
-			width: 100%;
-
-			&.is-layout-constrained
-				> :where( :not( .alignleft ):not( .alignright ):not( .alignfull ) ) {
-				margin-left: auto;
-				margin-right: auto;
-				max-width: var( --wp--style--global--wide-size, 1200px );
-				padding-left: var( --wp--style--root--padding-left, 1rem );
-				padding-right: var( --wp--style--root--padding-right, 1rem );
-				width: calc(
-					100% - var( --wp--style--root--padding-left, 1rem ) -
-						var( --wp--style--root--padding-right, 1rem )
-				);
-			}
 		}
 	}
 

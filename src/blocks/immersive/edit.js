@@ -61,6 +61,14 @@ function Edit( props ) {
 		style: style,
 	} );
 
+	const innerBlocksClass = classnames( 
+		'immersive--scroll-content',
+		'is-layout-flow',
+		{
+			[ `align${ align }` ]: align,
+		}
+	);
+
 	const blocksPropsFigure = {
 		...blockProps,
 		className: classnames(
@@ -170,7 +178,7 @@ function Edit( props ) {
 					setAttributes={ setAttributes }
 				/>
 			) }
-			<div className="immersive--scroll-content">
+			<div className={ innerBlocksClass }>
 				<InnerBlockSlider
 					allowedBlock={ ALLOWED_BLOCKS }
 					parentBlockId={ clientId }

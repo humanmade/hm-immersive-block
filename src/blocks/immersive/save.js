@@ -48,7 +48,9 @@ function save( props ) {
 	} );
 
 	const innerBlocksProps = useInnerBlocksProps.save( {
-		className: 'immersive--scroll-content',
+		className: classnames( 'immersive--scroll-content', 'is-layout-flow', {
+			[ `align${ align }` ]: align,
+		} ),
 	} );
 
 	const blocksPropsFigure = {

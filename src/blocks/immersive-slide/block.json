@@ -10,7 +10,6 @@
   "version": "1.0.0",
   "textdomain": "hm-immersive-block",
   "editorScript": "file:./index.js",
-  "attributes": {},
   "supports": {
     "background": {
       "backgroundImage": true,
@@ -22,6 +21,12 @@
     "color": {
       "background": true,
       "text": true
+    },
+    "layout": {
+      "allowSizingOnChildren": true,
+      "default": {
+        "type": "constrained"
+      }
     }
   }
 }
