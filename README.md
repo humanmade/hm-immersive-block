@@ -51,8 +51,13 @@ The plugin exposes CSS custom properties for colours. Define these in your theme
 | `--hm-immersive-caption-bg` | `#fff` | Background of the media caption area |
 | `--hm-immersive-slide-bg` | `#777` | Slide background when no image and no block background is set |
 | `--hm-immersive-nav-bg` | `rgba(255,255,255,0.95)` | In-editor slide navigation bar background |
+| `--hm-immersive-button-color-bg` | `#FFF` | Background color of the ambient video button; swaps to foreground on hover/focus |
+| `--hm-immersive-button-color` | `#000` | Foreground/text color of the ambient video button; swaps to background on hover/focus |
 | `--hm-immersive-button-margin` | fluid 1rem – 1.5rem | Spacing around the ambient video pause button |
+| `--hm-immersive-button-padding` | `0.5rem` | Inner padding of the ambient video pause button |
 | `--hm-immersive-button-width` | `3rem` | Size of the ambient video pause button |
+| `--hm-immersive-button-font-size` | `2rem` | Font size of the play/pause icon inside the button |
+| `--hm-immersive-button-outline` | `2px solid currentColor` | Focus outline of the ambient video pause button |
 
 Content alignment uses the WordPress layout custom properties (`--wp--style--global--wide-size`, `--wp--style--root--padding-left/right`) with sensible fallbacks, so it integrates automatically with full-site-editing themes.
 
