@@ -7,8 +7,8 @@
  * with sensible fallbacks for non-full-site-editing themes.
  */
 
-.immersive {
-	--hm-immersive-header-height: clamp( 5rem, 2.88vw + 4.33rem, 7rem );
+.wp-block-hm-immersive-immersive {
+	--hm-immersive-header-height: var( --wp-admin--admin-bar--height, 0px );
 	--hm-immersive-max-height: 100vh;
 	--hm-immersive-available-height: calc(
 		var( --hm-immersive-max-height ) - var( --hm-immersive-header-height, 0px )
@@ -35,37 +35,39 @@
 		grid-column: 1 / span 2;
 	}
 
-	&--image,
-	&--scroll-content {
-		grid-column: 1 / span 2;
-		grid-row: 1 / span 1;
-		margin: 0;
-		width: 100%;
-	}
-
-	&--image {
-		overflow: hidden;
-		position: relative;
-		z-index: 0;
-
-		&.alignwide,
-		&.alignfull {
+	.immersive {
+		&--image,
+		&--scroll-content {
+			grid-column: 1 / span 2;
+			grid-row: 1 / span 1;
 			margin: 0;
+			width: 100%;
 		}
-	}
 
-	&--image::after {
-		background-color: var( --hm-immersive-overlay-bg, rgba( 0, 0, 0, 0.55 ) );
-		bottom: 0;
-		content: "";
-		display: block;
-		height: 100%;
-		left: 0;
-		position: absolute;
-		right: 0;
-		top: 0;
-		width: 100%;
-		z-index: 1;
+		&--image {
+			overflow: hidden;
+			position: relative;
+			z-index: 0;
+
+			&.alignwide,
+			&.alignfull {
+				margin: 0;
+			}
+		}
+
+		&--image::after {
+			background-color: var( --hm-immersive-overlay-bg, rgba( 0, 0, 0, 0.55 ) );
+			bottom: 0;
+			content: "";
+			display: block;
+			height: 100%;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 100%;
+			z-index: 1;
+		}
 	}
 
 	/* stylelint-disable declaration-no-important */
@@ -120,7 +122,7 @@
 		background-color: var( --hm-immersive-slide-bg, #777 );
 	}
 
-	&--scroll-content {
+	.immersive--scroll-content {
 		display: flex;
 		flex-direction: column;
 		overflow: scroll;
@@ -169,10 +171,10 @@
 	}
 
 	&.wp-block-video {
-		--hm-immersive-button-margin: clamp( 1rem, 3.56vw + 0.17rem, 1.5rem)
+		--hm-immersive-button-margin: 1rem;
 		--hm-immersive-button-width: 3rem;
 		--hm-immersive-button-row-height: calc(
-			( var( --hm-immersive-button-margin, 1rem ) * 2 ) + var( --hm-immersive-button-width, 2.5rem )
+			( var( --hm-immersive-button-margin ) * 2 ) + var( --hm-immersive-button-width )
 		);
 		grid-template-rows:
 			calc( var( --hm-immersive-content-height ) - var( --hm-immersive-button-row-height ) )

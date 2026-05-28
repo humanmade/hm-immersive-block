@@ -11,7 +11,7 @@
   "textdomain": "hm-immersive-block",
   "editorScript": "file:./index.js",
   "viewScript": "file:./view.js",
-  "style": "file:./style.css",
+  "style": "file:./style-index.css",
   "editorStyle": "file:./index.css",
   "attributes": {
     "align": {
