@@ -1,0 +1,34 @@
+/**
+ * Editor-only styles for the HM Immersive Block plugin.
+ * Loaded on-demand via the "editorStyle" handle in block.json.
+ */
+
+.immersive {
+	> .components-placeholder {
+		grid-column: 1 / span 2;
+		grid-row: 1 / span 1;
+		justify-content: center;
+
+		+ .immersive--scroll-content {
+			display: none;
+		}
+	}
+
+	.inner-block-slider {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	.slides {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+
+	.inner-block-slider__navigation {
+		background-color: var( --hm-immersive-nav-bg, rgba( 255, 255, 255, 0.95 ) );
+		margin: 0;
+		padding: 2rem;
+	}
+}

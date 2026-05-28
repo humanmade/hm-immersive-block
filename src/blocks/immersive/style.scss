@@ -1,0 +1,200 @@
+/**
+ * Frontend styles for the HM Immersive Block plugin.
+ * Loaded on-demand via the "style" handle in block.json.
+ *
+ * CSS custom properties (--hm-immersive-*) provide theming hooks.
+ * WordPress layout properties (--wp--style--*) are used where available,
+ * with sensible fallbacks for non-full-site-editing themes.
+ */
+
+.immersive {
+	--hm-immersive-header-height: clamp( 5rem, 2.88vw + 4.33rem, 7rem );
+	--hm-immersive-max-height: 100vh;
+	--hm-immersive-available-height: calc(
+		var( --hm-immersive-max-height ) - var( --hm-immersive-header-height, 0px )
+	);
+	--hm-immersive-min-height: var( --hm-immersive-available-height );
+	--hm-immersive-content-height: min( var( --hm-immersive-min-height ), var( --hm-immersive-available-height ) );
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: var( --hm-immersive-content-height ) 1fr;
+	position: relative;
+
+	&.has-media-caption {
+		--hm-immersive-content-height: min(
+			var( --hm-immersive-min-height ),
+			calc( var( --hm-immersive-available-height ) - 5rem )
+		);
+	}
+
+	&.alignfull {
+		width: 100vw;
+	}
+
+	.wp-element-caption {
+		grid-column: 1 / span 2;
+	}
+
+	&--image,
+	&--scroll-content {
+		grid-column: 1 / span 2;
+		grid-row: 1 / span 1;
+		margin: 0;
+		width: 100%;
+	}
+
+	&--image {
+		overflow: hidden;
+		position: relative;
+		z-index: 0;
+
+		&.alignwide,
+		&.alignfull {
+			margin: 0;
+		}
+	}
+
+	&--image::after {
+		background-color: var( --hm-immersive-overlay-bg, rgba( 0, 0, 0, 0.55 ) );
+		bottom: 0;
+		content: "";
+		display: block;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
+		z-index: 1;
+	}
+
+	/* stylelint-disable declaration-no-important */
+	img,
+	&.wp-block-video video,
+	&.wp-block-video iframe {
+		display: block;
+		height: 100% !important;
+		object-fit: cover;
+		width: 100% !important;
+	}
+	/* stylelint-enable declaration-no-important */
+
+	&.has-background .wp-element-caption {
+		background-color: var( --hm-immersive-caption-bg, #fff );
+		color: initial;
+		margin-block-start: 0;
+		padding-block-start: clamp( 0.5rem, 0.72vw + 0.33rem, 1rem );
+		position: relative;
+
+		&::before {
+			background-color: inherit;
+			bottom: 0;
+			content: "";
+			display: block;
+			left: 0;
+			margin-left: -100vw;
+			position: absolute;
+			top: 0;
+			width: 200vw;
+		}
+
+		p {
+			position: relative;
+			z-index: 1;
+		}
+	}
+
+	&:not( .has-background ):not( .has-text-color )
+		.immersive--image
+		+ .immersive--scroll-content {
+		color: var( --hm-immersive-content-color, #fff );
+
+		.is-style-sand,
+		.is-style-colored,
+		.has-background {
+			color: initial;
+		}
+	}
+
+	&:not( .has-background ) .immersive--scroll-content:first-child {
+		background-color: var( --hm-immersive-slide-bg, #777 );
+	}
+
+	&--scroll-content {
+		display: flex;
+		flex-direction: column;
+		overflow: scroll;
+		z-index: 1;
+
+		&:not( :has( .is-layout-constrained ) ) {
+			margin-left: auto;
+			margin-right: auto;
+			max-width: var( --wp--style--global--wide-size, 1200px );
+			padding-left: var( --wp--style--root--padding-left, 1rem );
+			padding-right: var( --wp--style--root--padding-right, 1rem );
+			width: calc(
+				100% - var( --wp--style--root--padding-left, 1rem ) -
+					var( --wp--style--root--padding-right, 1rem )
+			);
+		}
+
+		&-item {
+			background-position: center;
+			display: flex;
+			flex: 0 0 100%;
+			flex-direction: column;
+			grid-column: 1 / span 1;
+			grid-row: 1 / span 1;
+			justify-content: center;
+			margin-block: 0;
+			width: 100%;
+
+			&.is-layout-constrained
+				> :where( :not( .alignleft ):not( .alignright ):not( .alignfull ) ) {
+				margin-left: auto;
+				margin-right: auto;
+				max-width: var( --wp--style--global--wide-size, 1200px );
+				padding-left: var( --wp--style--root--padding-left, 1rem );
+				padding-right: var( --wp--style--root--padding-right, 1rem );
+				width: calc(
+					100% - var( --wp--style--root--padding-left, 1rem ) -
+						var( --wp--style--root--padding-right, 1rem )
+				);
+			}
+		}
+	}
+
+	.video-ambient-controls {
+		z-index: 2;
+	}
+
+	&.wp-block-video {
+		--hm-immersive-button-margin: clamp( 1rem, 3.56vw + 0.17rem, 1.5rem)
+		--hm-immersive-button-width: 3rem;
+		--hm-immersive-button-row-height: calc(
+			( var( --hm-immersive-button-margin, 1rem ) * 2 ) + var( --hm-immersive-button-width, 2.5rem )
+		);
+		grid-template-rows:
+			calc( var( --hm-immersive-content-height ) - var( --hm-immersive-button-row-height ) )
+			var( --hm-immersive-button-row-height ) 1fr;
+
+		.immersive--image,
+		.immersive--scroll-content {
+			grid-row: 1 / span 2;
+		}
+	}
+}
+
+/* stylelint-disable no-descending-specificity */
+.immersive-pin .immersive,
+.immersive.wp-block {
+	overflow: hidden;
+}
+
+.immersive-pin .immersive--scroll-content,
+.immersive.wp-block .immersive--scroll-content {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: var( --hm-immersive-content-height );
+	overflow: visible;
+}

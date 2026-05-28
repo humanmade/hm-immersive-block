@@ -1,0 +1,9 @@
+{
+	"name": "humanmade/hm-immersive-block",
+	"description": "HM Immersive Block — full-viewport pinned-background scrolling slides powered by GSAP.",
+	"type": "wordpress-muplugin",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=8.3"
+	}
+}

@@ -1,0 +1,15 @@
+# Dependencies
+## Avoid any node_modules folders anywhere in the repo; see see https://docs.wpvip.com/how-tos/manage-dependencies/#version-management
+node_modules
+
+# Build files #
+/build/
+
+# Ignore temporary OS files
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.history/*

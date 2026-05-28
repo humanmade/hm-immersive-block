@@ -1,0 +1,94 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "hm-immersive/immersive",
+  "title": "Immersive",
+  "category": "design",
+  "icon": "cover-image",
+  "description": "Pins a full-viewport background image or video while scrolling text slides animate into view. Uses GSAP ScrollTrigger for frontend animation. Must contain at least one Immersive Slide block.",
+  "keywords": [ "immersive", "image", "scroll", "parallax" ],
+  "version": "1.0.0",
+  "textdomain": "hm-immersive-block",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style.css",
+  "editorStyle": "file:./index.css",
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "creditText": {
+      "type": "string"
+    },
+    "fadeFirstSlide": {
+      "type": "boolean",
+      "default": false
+    },
+    "mediaAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "mediaCaption": {
+      "type": "string",
+      "default": ""
+    },
+    "mediaHeight": {
+      "type": "string",
+      "source": "attribute",
+      "attribute": "height",
+      "selector": ".wp-block-image img"
+    },
+    "mediaId": {
+      "type": "number",
+      "default": null
+    },
+    "mediaSize": {
+      "type": "string",
+      "default": "large"
+    },
+    "mediaType": {
+      "type": "string"
+    },
+    "mediaUrl": {
+      "type": "string"
+    },
+    "mediaWidth": {
+      "type": "string",
+      "source": "attribute",
+      "attribute": "width",
+      "selector": ".wp-block-image img"
+    },
+    "minHeight": {
+      "type": "number"
+    },
+    "minHeightUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "speed": {
+      "type": "string",
+      "default": "150",
+      "enum": [ "75", "150", "225" ]
+    },
+    "transitionType": {
+      "type": "string",
+      "default": "scroll",
+      "enum": [ "scroll", "fade" ]
+    },
+    "useMedia": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "align": [ "wide", "full" ],
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "spacing": {
+      "margin": true
+    }
+  }
+}

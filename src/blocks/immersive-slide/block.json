@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "hm-immersive/immersive-slide",
+  "title": "Immersive slide",
+  "category": "design",
+  "icon": "cover-image",
+  "description": "A single content panel within an Immersive block. Each slide is revealed in sequence over the shared background media as the user scrolls.",
+  "parent": [ "hm-immersive/immersive" ],
+  "version": "1.0.0",
+  "textdomain": "hm-immersive-block",
+  "editorScript": "file:./index.js",
+  "attributes": {},
+  "supports": {
+    "background": {
+      "backgroundImage": true,
+      "backgroundSize": true,
+      "__experimentalDefaultControls": {
+        "backgroundImage": true
+      }
+    },
+    "color": {
+      "background": true,
+      "text": true
+    }
+  }
+}
