@@ -12,18 +12,6 @@ namespace HM\ImmersiveBlock;
  */
 function bootstrap() : void {
 	add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
-	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts' );
-}
-
-/**
- * Enqueue GSAP and ScrollTrigger on pages that contain the immersive block.
- */
-function enqueue_scripts() : void {
-	if ( ! has_block( 'hm-immersive/immersive' ) ) {
-		return;
-	}
-	wp_enqueue_script( 'gsap' );
-	wp_enqueue_script( 'gsap-scroll-trigger' );
 }
 
 /**
