@@ -157,6 +157,7 @@
 	}
 
 	.wp-element-caption {
+		box-sizing: border-box;
 		color: var( --hm-immersive-caption-color, initial );
 		grid-column: 1 / span 2;
 		grid-row: 3 / span 1;
