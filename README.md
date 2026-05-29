@@ -16,7 +16,7 @@ The container block. Accepts a background image or video (including YouTube/Vime
 
 ### `hm-immersive/immersive-slide`
 
-A single content panel inside the Immersive block. Accepts any inner blocks. Supports per-slide background image and colour via block supports.
+A single content panel inside the Immersive block. Accepts any inner blocks. Supports per-slide background image and color via block supports.
 
 ## Requirements
 
@@ -39,21 +39,22 @@ html {
 
 ## Theming
 
-The plugin exposes CSS custom properties for colours. Define these in your theme to override the defaults:
+The plugin exposes CSS custom properties for colors. Define these in your theme to override the defaults:
 
 | Property | Default | Usage |
 |---|---|---|
-| `--hm-immersive-header-height` | fluid 80px – 112px | CSS-side sticky header height; used to compute available block height. Set to match your header height. |
+| `--hm-immersive-header-height` | `var(--wp-admin--admin-bar--height, 0px)` | CSS-side sticky header height; used to compute available block height. Set to match your header height. |
 | `--hm-immersive-max-height` | `100vh` | Maximum height the block can occupy |
 | `--hm-immersive-min-height` | `var(--hm-immersive-available-height)` | Minimum block height; override to enforce a specific floor |
 | `--hm-immersive-overlay-bg` | `rgba(0,0,0,0.55)` | Dark overlay on the background image |
-| `--hm-immersive-content-color` | `#fff` | Slide text colour when no background is set |
+| `--hm-immersive-content-color` | `#fff` | Slide text color when no background is set |
+| `--hm-immersive-caption-color` | `initial` | Caption text color; inherits by default |
 | `--hm-immersive-caption-bg` | `#fff` | Background of the media caption area |
 | `--hm-immersive-slide-bg` | `#777` | Slide background when no image and no block background is set |
 | `--hm-immersive-nav-bg` | `rgba(255,255,255,0.95)` | In-editor slide navigation bar background |
 | `--hm-immersive-button-color-bg` | `#FFF` | Background color of the ambient video button; swaps to foreground on hover/focus |
 | `--hm-immersive-button-color` | `#000` | Foreground/text color of the ambient video button; swaps to background on hover/focus |
-| `--hm-immersive-button-margin` | fluid 1rem – 1.5rem | Spacing around the ambient video pause button |
+| `--hm-immersive-button-margin` | `1rem` | Spacing around the ambient video pause button |
 | `--hm-immersive-button-padding` | `0.5rem` | Inner padding of the ambient video pause button |
 | `--hm-immersive-button-width` | `3rem` | Size of the ambient video pause button |
 | `--hm-immersive-button-font-size` | `2rem` | Font size of the play/pause icon inside the button |

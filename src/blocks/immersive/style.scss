@@ -11,44 +11,53 @@
 	--hm-immersive-header-height: var( --wp-admin--admin-bar--height, 0px );
 	--hm-immersive-max-height: 100vh;
 	--hm-immersive-available-height: calc(
-		var( --hm-immersive-max-height ) - var( --hm-immersive-header-height, 0px )
+		min( var( --hm-immersive-max-height ), 100vh ) - var( --hm-immersive-header-height, 0px )
 	);
 	--hm-immersive-min-height: var( --hm-immersive-available-height );
-	--hm-immersive-content-height: min( var( --hm-immersive-min-height ), var( --hm-immersive-available-height ) );
+	--hm-immersive-button-margin: 1rem;
+	--hm-immersive-button-width: 3rem;
 	display: grid;
 	grid-template-columns: auto auto;
-	grid-template-rows: var( --hm-immersive-content-height ) 1fr;
+	grid-template-rows: 1fr auto auto;
+	min-height: min( var( --hm-immersive-min-height ), var( --hm-immersive-available-height ) );
+	max-height: var( --hm-immersive-available-height );
 	position: relative;
-
-	&.has-media-caption {
-		--hm-immersive-content-height: min(
-			var( --hm-immersive-min-height ),
-			calc( var( --hm-immersive-available-height ) - 5rem )
-		);
-	}
 
 	&.alignfull {
 		width: 100vw;
 	}
 
-	.immersive {
-		&--image,
-		&--scroll-content {
-			grid-column: 1 / span 2;
-			grid-row: 1 / span 1;
+	/* stylelint-disable declaration-no-important */
+	img,
+	&.wp-block-video video,
+	&.wp-block-video iframe {
+		display: block;
+		height: 100% !important;
+		object-fit: cover;
+		width: 100% !important;
+	}
+	/* stylelint-enable declaration-no-important */
+
+	.immersive--image,
+	.immersive--scroll-content {
+		grid-column: 1 / span 2;
+		grid-row: 1 / span 2;
+		margin: 0;
+		width: 100%;
+	}
+
+	.immersive--image {
+		overflow: hidden;
+		position: relative;
+		z-index: 0;
+
+		&.alignwide,
+		&.alignfull {
 			margin: 0;
-			width: 100%;
 		}
 
-		&--image {
-			overflow: hidden;
-			position: relative;
-			z-index: 0;
-
-			&.alignwide,
-			&.alignfull {
-				margin: 0;
-			}
+		> img {
+			border-radius: 0;
 		}
 	}
 
@@ -65,17 +74,6 @@
 		width: 100%;
 		z-index: 1;
 	}
-
-	/* stylelint-disable declaration-no-important */
-	img,
-	&.wp-block-video video,
-	&.wp-block-video iframe {
-		display: block;
-		height: 100% !important;
-		object-fit: cover;
-		width: 100% !important;
-	}
-	/* stylelint-enable declaration-no-important */
 
 	&:not( .has-background ):not( .has-text-color )
 		.immersive--image
@@ -158,35 +156,22 @@
 		}
 	}
 
-	&.wp-block-video {
-		--hm-immersive-button-margin: 1rem;
-		--hm-immersive-button-width: 3rem;
-		--hm-immersive-button-row-height: calc(
-			( var( --hm-immersive-button-margin ) * 2 ) + var( --hm-immersive-button-width )
-		);
-		grid-template-rows:
-			calc( var( --hm-immersive-content-height ) - var( --hm-immersive-button-row-height ) )
-			var( --hm-immersive-button-row-height ) 1fr;
-
-		.immersive--image,
-		.immersive--scroll-content {
-			grid-row: 1 / span 2;
-		}
-	}
-
 	.wp-element-caption {
-		background-color: var( --hm-immersive-caption-bg, #fff );
-		color: initial;
+		color: var( --hm-immersive-caption-color, initial );
 		grid-column: 1 / span 2;
+		grid-row: 3 / span 1;
 		margin-block: 0;
+		margin-inline: auto;
+		max-width: var(--wp--style--global--wide-size);
 		padding-block: clamp( 0.5rem, 0.72vw + 0.33rem, 1rem );
 		padding-left: var( --wp--style--root--padding-left, 1rem );
 		padding-right: var( --wp--style--root--padding-right, 1rem );
 		position: relative;
+		width: 100%;
 		z-index: 1;
 
 		&::before {
-			background-color: inherit;
+			background-color: var( --hm-immersive-caption-bg, #fff );
 			content: "";
 			display: block;
 			inset: 0;
@@ -204,15 +189,14 @@
 }
 
 /* stylelint-disable no-descending-specificity */
-.immersive-pin .immersive,
-.immersive.wp-block {
+.immersive-pin .wp-block-hm-immersive-immersive,
+.wp-block-hm-immersive-immersive.wp-block {
 	overflow: hidden;
 }
 
 .immersive-pin .immersive--scroll-content,
-.immersive.wp-block .immersive--scroll-content {
+.wp-block-hm-immersive-immersive.wp-block .immersive--scroll-content {
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: var( --hm-immersive-content-height );
 	overflow: visible;
 }

@@ -133,7 +133,7 @@ function initImmersive( immersiveEl ) {
 }
 
 function init() {
-	document.querySelectorAll( '.immersive' ).forEach( initImmersive );
+	document.querySelectorAll( '.wp-block-hm-immersive-immersive' ).forEach( initImmersive );
 	showAmbientVideoControls(
 		document.querySelectorAll( '.immersive.wp-block-video--ambient' )
 	);
