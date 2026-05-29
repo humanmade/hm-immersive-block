@@ -23,6 +23,7 @@ function save( props ) {
 		speed,
 		transitionType,
 		useMedia,
+		useOverlay,
 	} = attributes;
 
 	const minHeightWithUnit =
@@ -37,7 +38,8 @@ function save( props ) {
 	const blockProps = useBlockProps.save( {
 		className: classnames( 'immersive', {
 			[ `align${ align }` ]: align,
-			'has-media-caption': mediaCaption,
+			'has-media-caption': creditText || mediaCaption,
+			'has-overlay': useMedia && useOverlay,
 			'wp-block-video': mediaType === 'video',
 			'wp-block-video--ambient': mediaType === 'video',
 		} ),
@@ -48,7 +50,9 @@ function save( props ) {
 	} );
 
 	const innerBlocksProps = useInnerBlocksProps.save( {
-		className: 'immersive--scroll-content',
+		className: classnames( 'immersive--scroll-content', 'is-layout-flow', {
+			[ `align${ align }` ]: align,
+		} ),
 	} );
 
 	const blocksPropsFigure = {
@@ -72,7 +76,7 @@ function save( props ) {
 					className="video-ambient-controls pause"
 				></button>
 			) }
-			{ useMedia && ( creditText || mediaCaption ) && (
+			{ ( creditText || mediaCaption ) && (
 				<MediaCaption.Content
 					creditText={ creditText }
 					mediaCaption={ mediaCaption }

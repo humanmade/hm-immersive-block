@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { PlainText } from '@wordpress/block-editor';
+import { RichText } from '@wordpress/block-editor';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useCallback, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -15,7 +15,6 @@ import { __ } from '@wordpress/i18n';
  * @param {number}   props.mediaId        ID of the attachment post we want meta for.
  * @param {Function} props.setAttributes  Set block attributes function.
  * @param {Function} props.setHasUpdated  Set hasUpdated function.
- * @param {object}   props.style          Any inline styles to apply.
  * @returns {ReactNode} Component.
  */
 const MediaCredit = ( {
@@ -25,7 +24,6 @@ const MediaCredit = ( {
 	mediaId,
 	setAttributes,
 	setHasUpdated,
-	style,
 } ) => {
 	const [ creditMeta, setCreditMeta ] = useState( undefined );
 
@@ -66,10 +64,10 @@ const MediaCredit = ( {
 	}, [ hasUpdated, canInvalidateMedia, invalidateResolver, setHasUpdated ] );
 
 	return (
-		<PlainText
+		<RichText
 			className="wp-element-caption--credit"
 			placeholder={ __( 'Add media credit', 'hm-immersive-block' ) }
-			style={ style }
+			tagName="p"
 			value={ creditText }
 			onChange={ ( creditText ) => setAttributes( { creditText } ) }
 		/>

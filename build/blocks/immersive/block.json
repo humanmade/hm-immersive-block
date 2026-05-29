@@ -6,11 +6,20 @@
   "category": "design",
   "icon": "cover-image",
   "description": "Pins a full-viewport background image or video while scrolling text slides animate into view. Uses GSAP ScrollTrigger for frontend animation. Must contain at least one Immersive Slide block.",
-  "keywords": [ "immersive", "image", "scroll", "parallax" ],
+  "keywords": [
+    "immersive",
+    "image",
+    "scroll",
+    "parallax"
+  ],
   "version": "1.0.0",
   "textdomain": "hm-immersive-block",
   "editorScript": "file:./index.js",
-  "viewScript": [ "gsap", "gsap-scroll-trigger", "file:./view.js" ],
+  "viewScript": [
+    "gsap",
+    "gsap-scroll-trigger",
+    "file:./view.js"
+  ],
   "style": "file:./style-index.css",
   "editorStyle": "file:./index.css",
   "attributes": {
@@ -69,12 +78,19 @@
     "speed": {
       "type": "string",
       "default": "150",
-      "enum": [ "75", "150", "225" ]
+      "enum": [
+        "75",
+        "150",
+        "225"
+      ]
     },
     "transitionType": {
       "type": "string",
       "default": "scroll",
-      "enum": [ "scroll", "fade" ]
+      "enum": [
+        "scroll",
+        "fade"
+      ]
     },
     "useMedia": {
       "type": "boolean",
@@ -86,7 +102,10 @@
     }
   },
   "supports": {
-    "align": [ "wide", "full" ],
+    "align": [
+      "wide",
+      "full"
+    ],
     "color": {
       "background": true,
       "text": true

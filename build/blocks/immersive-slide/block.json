@@ -6,7 +6,9 @@
   "category": "design",
   "icon": "cover-image",
   "description": "A single content panel within an Immersive block. Each slide is revealed in sequence over the shared background media as the user scrolls.",
-  "parent": [ "hm-immersive/immersive" ],
+  "parent": [
+    "hm-immersive/immersive"
+  ],
   "version": "1.0.0",
   "textdomain": "hm-immersive-block",
   "editorScript": "file:./index.js",

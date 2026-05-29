@@ -1,5 +1,8 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+/* global gsap, ScrollTrigger */
+import {
+	monitorReducedMotion,
+	showAmbientVideoControls,
+} from '../../utilities/video';
 
 gsap.registerPlugin( ScrollTrigger );
 
@@ -129,8 +132,13 @@ function initImmersive( immersiveEl ) {
 }
 
 function init() {
-	document.querySelectorAll( '.immersive' ).forEach( initImmersive );
+	document.querySelectorAll( '.wp-block-hm-immersive-immersive' ).forEach( initImmersive );
+	showAmbientVideoControls(
+		document.querySelectorAll( '.immersive.wp-block-video--ambient' )
+	);
 }
+
+monitorReducedMotion();
 
 if ( document.readyState === 'loading' ) {
 	document.addEventListener( 'DOMContentLoaded', init );

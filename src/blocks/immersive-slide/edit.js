@@ -9,14 +9,17 @@ const CONTENT_TEMPLATE = [ [ 'core/paragraph' ] ];
  *
  * @returns {ReactNode} Component.
  */
-function Edit() {
+function Edit( { attributes } ) {
+	const { layout } = attributes;
+
 	const blockProps = useBlockProps( {
-		className: 'immersive--scroll-content-item is-layout-constrained',
+		className: 'immersive--scroll-content-item',
 	} );
 
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		template: CONTENT_TEMPLATE,
 		templateLock: false,
+		__experimentalLayout: layout,
 	} );
 
 	return <div { ...innerBlocksProps } />;
