@@ -5,8 +5,9 @@
   "description": "HM Immersive Block — full-viewport pinned-background scrolling slides powered by GSAP.",
   "author": "Human Made",
   "scripts": {
-    "build": "wp-scripts build",
-    "start": "wp-scripts start"
+    "build": "wp-scripts build && npm run copy-vendor",
+    "copy-vendor": "mkdir -p build/vendor && cp node_modules/gsap/dist/gsap.min.js node_modules/gsap/dist/ScrollTrigger.min.js build/vendor/",
+    "start": "npm run copy-vendor && wp-scripts start"
   },
   "dependencies": {
     "gsap": "^3.12.2"

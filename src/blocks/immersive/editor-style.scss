@@ -3,7 +3,7 @@
  * Loaded on-demand via the "editorStyle" handle in block.json.
  */
 
-.immersive {
+.wp-block-hm-immersive-immersive {
 	> .components-placeholder {
 		grid-column: 1 / span 2;
 		grid-row: 1 / span 1;
@@ -12,6 +12,12 @@
 		+ .immersive--scroll-content {
 			display: none;
 		}
+	}
+
+	.immersive--image.wp-block-video > div,
+	.immersive--image.wp-block-video > div > iframe {
+		height: 100%;
+		width: 100%;
 	}
 
 	.inner-block-slider {

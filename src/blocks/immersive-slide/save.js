@@ -9,7 +9,7 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
  */
 function save() {
 	const blockProps = useBlockProps.save( {
-		className: 'immersive--scroll-content-item is-layout-constrained',
+		className: 'immersive--scroll-content-item',
 	} );
 
 	const innerBlocksProps = useInnerBlocksProps.save( blockProps );

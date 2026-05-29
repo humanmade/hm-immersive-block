@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { merge } from 'lodash';
 import { ReactNode } from 'react';
 
+import apiFetch from '@wordpress/api-fetch';
 import {
 	BlockControls,
 	InspectorControls,
@@ -19,14 +20,11 @@ import {
 } from '@wordpress/components';
 import { useCallback, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { addQueryArgs } from '@wordpress/url';
+
+import EmbedPreview from '../embed-preview';
 
 const ALLOWED_MEDIA_TYPES = [ 'image', 'video/mp4' ];
-
-const ALLOWED_URL_PATTERNS = [
-	/^https?:\/\/((m|www)\.)?youtube\.com\/.+/i,
-	/^https?:\/\/youtu\.be\/.+/i,
-	/^https?:\/\/(www\.)?vimeo\.com\/.+/i,
-];
 
 /**
  * Multimedia selection component for use in the block editor.
@@ -119,47 +117,25 @@ const MultimediaWrapper = withNotices(
 			[ mediaSize, setAttributes ]
 		);
 
-		const matchesPatterns = ( url, patterns = ALLOWED_URL_PATTERNS ) =>
-			patterns.some( ( pattern ) => url.match( pattern ) );
-
-		const normalizeUrl = useCallback( ( mediaUrl ) => {
-			let mediaArr = [];
-			let embedURL;
-			if ( matchesPatterns( mediaUrl, [ ALLOWED_URL_PATTERNS[ 0 ] ] ) ) {
-				const cleanedUrl = mediaUrl.replace(
-					'youtube.com/watch?v=',
-					'youtube.com/embed/'
-				);
-				mediaArr = cleanedUrl.split( /&|%|embed\/|\?/ );
-				embedURL = 'https://www.youtube.com/embed/' + mediaArr[ 1 ];
-			} else if (
-				matchesPatterns( mediaUrl, [ ALLOWED_URL_PATTERNS[ 1 ] ] )
-			) {
-				mediaArr = mediaUrl.split( 'youtu.be/' );
-				embedURL = 'https://www.youtube.com/embed/' + mediaArr[ 1 ];
-			} else if (
-				matchesPatterns( mediaUrl, [ ALLOWED_URL_PATTERNS[ 2 ] ] )
-			) {
-				mediaArr = mediaUrl.split( 'vimeo.com/' );
-				embedURL = 'https://player.vimeo.com/video/' + mediaArr[ 1 ];
-			}
-			return embedURL;
-		}, [] );
-
 		const onSelectUrl = useCallback(
-			( mediaUrl ) => {
-				if ( ! matchesPatterns( mediaUrl ) ) {
+			async ( inputUrl ) => {
+				try {
+					await apiFetch( {
+						path: addQueryArgs( '/oembed/1.0/proxy', {
+							url: inputUrl,
+						} ),
+					} );
+					onSelectMedia( { type: 'video', url: inputUrl } );
+				} catch {
 					noticeOperations.createErrorNotice(
 						__(
-							'Please provide a YouTube or Vimeo URL.',
+							'Please provide a valid YouTube or Vimeo URL.',
 							'hm-immersive-block'
 						)
 					);
-					return;
 				}
-				onSelectMedia( { type: 'video', url: normalizeUrl( mediaUrl ) } );
 			},
-			[ normalizeUrl, noticeOperations, onSelectMedia ]
+			[ noticeOperations, onSelectMedia ]
 		);
 
 		const mediaToolbarControl = useMemo(
@@ -271,13 +247,7 @@ const MultimediaWrapper = withNotices(
 								</Disabled>
 							) : (
 								<Disabled isDisabled={ ! isSelected }>
-									<iframe
-										src={ mediaUrl }
-										title={ __(
-											'Embedded content from youtube.com',
-											'hm-immersive-block'
-										) }
-									/>
+									<EmbedPreview src={ mediaUrl } />
 								</Disabled>
 							) }
 						</figure>

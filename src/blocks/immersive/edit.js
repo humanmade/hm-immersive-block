@@ -36,6 +36,7 @@ function Edit( props ) {
 		speed,
 		transitionType,
 		useMedia,
+		useOverlay,
 	} = attributes;
 
 	const [ hasUpdated, setHasUpdated ] = useState( false );
@@ -56,10 +57,19 @@ function Edit( props ) {
 	const blockProps = useBlockProps( {
 		className: classnames( 'immersive', 'wp-block-image-wrapper', {
 			[ `align${ align }` ]: align,
-			'has-media-caption': mediaCaption,
+			'has-media-caption': creditText || mediaCaption,
+			'has-overlay': useMedia && useOverlay,
 		} ),
 		style: style,
 	} );
+
+	const innerBlocksClass = classnames( 
+		'immersive--scroll-content',
+		'is-layout-flow',
+		{
+			[ `align${ align }` ]: align,
+		}
+	);
 
 	const blocksPropsFigure = {
 		...blockProps,
@@ -117,6 +127,26 @@ function Edit( props ) {
 							setAttributes( { useMedia } );
 						} }
 					/>
+					{ useMedia && (
+						<ToggleControl
+							checked={ useOverlay }
+							label={ __(
+								'Apply background media overlay',
+								'hm-immersive-block'
+							) }
+							help={
+								useOverlay
+									? ''
+									: __(
+										'Without the overlay, you\'ll need a background behind all text to increase color contrast for accessibility.',
+										'hm-immersive-block'
+									)
+							}
+							onChange={ ( useOverlay ) => {
+								setAttributes( { useOverlay } );
+							} }
+						/>
+					)}
 				</PanelBody>
 				<PanelBody title={ __( 'Transitions', 'hm-immersive-block' ) }>
 					<ToggleGroupControl
@@ -170,7 +200,7 @@ function Edit( props ) {
 					setAttributes={ setAttributes }
 				/>
 			) }
-			<div className="immersive--scroll-content">
+			<div className={ innerBlocksClass }>
 				<InnerBlockSlider
 					allowedBlock={ ALLOWED_BLOCKS }
 					parentBlockId={ clientId }
@@ -178,18 +208,15 @@ function Edit( props ) {
 					template={ CONTENT_TEMPLATE }
 				/>
 			</div>
-			{ useMedia && ( mediaCaption || creditText || isSelected ) && (
-				<MediaCaption
-					attachmentData={ mediaItem }
-					creditText={ creditText }
-					hasUpdated={ hasUpdated }
-					isSelected={ isSelected }
-					mediaCaption={ mediaCaption }
-					mediaId={ mediaId }
-					setAttributes={ setAttributes }
-					setHasUpdated={ setHasUpdated }
-				/>
-			) }
+			<MediaCaption
+				attachmentData={ mediaItem }
+				creditText={ creditText }
+				hasUpdated={ hasUpdated }
+				mediaCaption={ mediaCaption }
+				mediaId={ mediaId }
+				setAttributes={ setAttributes }
+				setHasUpdated={ setHasUpdated }
+			/>
 		</figure>
 	);
 }

@@ -11,7 +11,6 @@ import { __ } from '@wordpress/i18n';
  * @param {object}   props.attachmentData Media attachment data.
  * @param {string}   props.creditText     Credit text attribute from block/component.
  * @param {boolean}  props.hasUpdated     Has the media element updated?
- * @param {boolean}  props.isSelected     Is the block selected?
  * @param {string}   props.mediaCaption   Caption from the block.
  * @param {number}   props.mediaId        ID of the attachment post we want meta for.
  * @param {Function} props.setAttributes  Set block attributes function.
@@ -22,7 +21,6 @@ const MediaCaption = ( {
 	attachmentData,
 	creditText,
 	hasUpdated,
-	isSelected,
 	mediaCaption,
 	mediaId,
 	setAttributes,
@@ -44,7 +42,6 @@ const MediaCaption = ( {
 			attachmentData={ attachmentData }
 			creditText={ creditText }
 			hasUpdated={ hasUpdated }
-			isSelected={ isSelected }
 			mediaId={ mediaId }
 			setAttributes={ setAttributes }
 			setHasUpdated={ setHasUpdated }
@@ -70,7 +67,11 @@ MediaCaption.Content = ( { creditText, mediaCaption } ) => (
 			/>
 		) }
 		{ creditText && (
-			<p className="wp-element-caption--credit">{ creditText }</p>
+			<RichText.Content
+				className="wp-element-caption--credit"
+				tagName="p"
+				value={ creditText }
+			/>
 		) }
 	</figcaption>
 );
