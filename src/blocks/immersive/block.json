@@ -10,7 +10,7 @@
   "version": "1.0.0",
   "textdomain": "hm-immersive-block",
   "editorScript": "file:./index.js",
-  "viewScript": "file:./view.js",
+  "viewScript": [ "gsap", "gsap-scroll-trigger", "file:./view.js" ],
   "style": "file:./style-index.css",
   "editorStyle": "file:./index.css",
   "attributes": {

@@ -73,3 +73,5 @@ npm run start   # development watch
 Built assets are output to `build/`. The `build/` directory should not be committed — run the build step as part of your deployment process.
 
 Requires Node.js. Uses [`@wordpress/scripts`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/) with automatic block detection; no custom webpack configuration is needed.
+
+GSAP and ScrollTrigger are loaded as registered WordPress scripts (not bundled into the view script). The build step copies the GSAP dist files from `node_modules` to `build/vendor/` automatically.

@@ -1,5 +1,4 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+/* global gsap, ScrollTrigger */
 import {
 	monitorReducedMotion,
 	showAmbientVideoControls,
