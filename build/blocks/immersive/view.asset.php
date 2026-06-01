@@ -1,1 +1,1 @@
-<?php return array('dependencies' => array(), 'version' => 'd985fcbb90e2ba7291b9');
+<?php return array('dependencies' => array('gsap', 'gsap-scroll-trigger'), 'version' => '3395c927a17a54e001bc');
