@@ -36,6 +36,7 @@
 	}
 
 	.immersive--image {
+		align-items: center;
 		display: flex;
 		justify-content: center;
 		overflow: hidden;
@@ -62,7 +63,8 @@
 
 		> iframe {
 			aspect-ratio: 16 / 9;
-			width: calc(100vh * 1.78);
+			height: max( 100%, calc( 100vw * 0.57 ) );
+			width: max( 100%, calc( 100vh * 1.78 ) );
 		}
 	}
 
