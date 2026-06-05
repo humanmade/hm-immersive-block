@@ -6,7 +6,7 @@ A WordPress block plugin that pins a full-viewport background image or video whi
 
 ### `hm-immersive/immersive`
 
-The container block. Accepts a background image or video (including YouTube/Vimeo embeds) and one or more Immersive Slide inner blocks. Inspector controls:
+The container block. Accepts a background image or video (including YouTube/Vimeo embeds) and one or more Immersive Slide inner blocks. Iframe embeds (YouTube and Vimeo only, 16:9 ratio) are sized to cover the full background at all viewport sizes — both dimensions use `max()` so neither axis ever falls short of the viewport edge. Inspector controls:
 
 - **Block height** — minimum height in `px` or `vh`
 - **Scroll speed** — slow / medium / fast (controls how long each slide is pinned)
